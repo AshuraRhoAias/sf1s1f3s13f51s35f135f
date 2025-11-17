@@ -9,6 +9,13 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/auth.routes');
 const electoralRoutes = require('./routes/electoral.routes');
+const statesRoutes = require('./routes/states.routes');
+const delegationsRoutes = require('./routes/delegations.routes');
+const coloniesRoutes = require('./routes/colonies.routes');
+const familiesRoutes = require('./routes/families.routes');
+const personsRoutes = require('./routes/persons.routes');
+const usersRoutes = require('./routes/users.routes');
+const reportsRoutes = require('./routes/reports.routes');
 const { initPool, closePool } = require('./config/database');
 const cache = require('./config/cache');
 
@@ -80,6 +87,13 @@ app.get('/', (req, res) => {
         endpoints: {
             auth: '/api/auth',
             electoral: '/api/electoral',
+            states: '/api/states',
+            delegations: '/api/delegations',
+            colonies: '/api/colonies',
+            families: '/api/families',
+            persons: '/api/persons',
+            users: '/api/users',
+            reports: '/api/reports',
             health: '/health'
         }
     });
@@ -87,6 +101,13 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/electoral', electoralRoutes);
+app.use('/api/states', statesRoutes);
+app.use('/api/delegations', delegationsRoutes);
+app.use('/api/colonies', coloniesRoutes);
+app.use('/api/families', familiesRoutes);
+app.use('/api/persons', personsRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/reports', reportsRoutes);
 
 // Cache stats (solo desarrollo)
 if (process.env.NODE_ENV !== 'production') {
